@@ -19,7 +19,13 @@ export const getServerSideProps: GetServerSideProps<{}> = async (_ctx) => {
   
   console.log('START Axios Call')
   axios.get('http://localhost:8000/')
-  console.log('END Axios Call, Header-Print-Server CANNOT print x-datadog-* header')
+  if(process.env.MSW === 'true') {
+    console.log('END Axios Call, Header-Print-Server will print x-datadog-* header')
+
+  } else {
+    console.log('END Axios Call, Header-Print-Server CANNOT print x-datadog-* header when MSW interceptor activated')
+
+  }
   return {
     props: {}
   }

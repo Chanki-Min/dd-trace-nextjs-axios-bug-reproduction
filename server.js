@@ -10,8 +10,7 @@ tracer.use('http', {
       request,
       response,
     ) => {
-      console.log('request', span.context()._url)
-    },
+      console.log(`tracer got http.request that requests to <${span.context()._tags['http.url']}>`)    },
   }
 })
 
@@ -22,7 +21,7 @@ tracer.use('fetch', {
       request,
       response,
     ) => {
-      console.log('request', span.context()._url)
+      console.log(`tracer got fetch.request that requests to <${span.context()._tags['http.url']}>`)
     },
   }
 })
